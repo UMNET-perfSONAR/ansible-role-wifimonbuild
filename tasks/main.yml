@@ -1,2 +1,28 @@
 ---
 # tasks file for ansible-role-wifimonbuild
+
+- debug:
+    msg:
+    - "This is ansible-role-wifimonbuild!"
+
+- name: Install Maven
+  apt:
+    name: maven
+    update_cache: yes
+
+- name: Clone Bitbucket Repo
+  git: >
+    repo=https://bitbucket.software.geant.org/scm/wfmon/agent.git
+    dest=/tmp/wifimon/agent
+
+- name: Compile Wifimon Code
+  command:
+    cmd: "mvn clean install" 
+    chdir: /home/vagrant/agent
+  register: mvn_result
+
+- name: "mvn clean task output"
+  debug:
+     var: mvn_result
+
+
