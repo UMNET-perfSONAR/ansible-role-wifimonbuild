@@ -1,10 +1,6 @@
 ---
 # tasks file for ansible-role-wifimonbuild
 
-- debug:
-    msg:
-    - "This is ansible-role-wifimonbuild!"
-
 - name: Install Maven
   apt:
     name: maven
